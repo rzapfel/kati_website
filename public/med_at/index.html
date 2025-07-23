@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KI-Assistentin für Arztpraxen – Landingpage Wireframe</title>
+
+  <!-- Google Fonts Vorschlag -->
+  <!-- Headline/Display: "Merriweather" oder "Playfair Display"; Fließtext/UI: "Inter" -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =====================
+       Farb- & Typo-System
+       ===================== */
+    :root {
+      /* Primärfarben (medizinisch, vertrauenswürdig) */
+      --clr-primary-600: #005b82;   /* Buttons, Links */
+      --clr-primary-500: #0078aa;   /* Hover/aktive States */
+      --clr-primary-100: #e6f5fb;   /* zarte Hintergründe */
+
+      /* Akzentfarben (Handlungsaufforderung, visuelle Highlights) */
+      --clr-accent-500: #00b894;    /* Grün: Erfolg, Entlastung */
+      --clr-accent-400: #4cd6bb;
+
+      /* Neutral / Grey Scale */
+      --clr-grey-900: #172026;
+      --clr-grey-700: #3a4a57;
+      --clr-grey-500: #6c7a86;
+      --clr-grey-300: #c9d1d8;
+      --clr-grey-100: #f2f4f6;
+      --clr-white: #ffffff;
+
+      /* Typografie */
+      --ff-head: 'Merriweather', serif;
+      --ff-body: 'Inter', system-ui, sans-serif;
+      --fs-900: clamp(2.4rem, 6vw, 3.6rem); /* Hero Headline */
+      --fs-700: 1.8rem;  /* Abschnitts-Headlines */
+      --fs-600: 1.5rem;  /* Untertitel */
+      --fs-500: 1.25rem; /* Fließtext groß */
+      --fs-400: 1rem;    /* Fließtext Standard */
+      --fs-300: 0.875rem;/* Kleingedrucktes */
+
+      --radius-200: 0.5rem;
+      --radius-300: 1rem;
+      --radius-400: 1.5rem;
+
+      --shadow-elev-1: 0 2px 6px rgba(0,0,0,0.08);
+      --shadow-elev-2: 0 6px 18px rgba(0,0,0,0.12);
+
+      --max-width: 1200px;
+    }
+
+    html { box-sizing: border-box; font-size: 16px; }
+    *, *::before, *::after { box-sizing: inherit; }
+
+    body {
+      margin: 0;
+      font-family: var(--ff-body);
+      color: var(--clr-grey-900);
+      background: var(--clr-white);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, video { max-width: 100%; display: block; }
+    a { color: var(--clr-primary-600); text-decoration: none; }
+    a:hover { color: var(--clr-primary-500); }
+
+    h1, h2, h3, h4 { font-family: var(--ff-head); margin: 0 0 0.5em; line-height: 1.2; }
+    h1 { font-size: var(--fs-900); }
+    h2 { font-size: var(--fs-700); }
+    h3 { font-size: var(--fs-600); }
+
+    p { margin: 0 0 1em; font-size: var(--fs-400); }
+
+    /* Utility */
+    .container {
+      width: min(100% - 2rem, var(--max-width));
+      margin-inline: auto;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.4rem;
+      background: var(--clr-primary-600);
+      color: var(--clr-white);
+      border-radius: var(--radius-200);
+      font-weight: 600;
+      font-size: var(--fs-400);
+      box-shadow: var(--shadow-elev-1);
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .btn:hover { background: var(--clr-primary-500); transform: translateY(-1px); }
+    .btn--ghost {
+      background: transparent;
+      color: var(--clr-primary-600);
+      border: 2px solid var(--clr-primary-600);
+    }
+
+    section { padding: 4rem 0; position: relative; }
+    section:nth-of-type(even) { background: var(--clr-grey-100); }
+
+    /* ----- Header / Hero ----- */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--clr-white);
+      z-index: 1000;
+      box-shadow: 0 1px 0 var(--clr-grey-300);
+    }
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+    }
+    .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.02em; }
+    nav ul { margin: 0; padding: 0; list-style: none; display: flex; gap: 1rem; }
+    nav a { font-size: 0.95rem; font-weight: 500; }
+
+    .hero {
+      padding: 6rem 0 4rem;
+      background: linear-gradient(135deg, var(--clr-primary-100) 0%, var(--clr-white) 100%);
+    }
+    .hero__content {
+      max-width: 680px;
+    }
+    .hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+
+    /* Problem Section */
+    .problems__list {
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .card {
+      background: var(--clr-white);
+      padding: 1.4rem 1.6rem;
+      border-radius: var(--radius-300);
+      box-shadow: var(--shadow-elev-1);
+      border: 1px solid var(--clr-grey-100);
+    }
+    .card h3 { margin-bottom: 0.4rem; font-size: 1.1rem; }
+    .card p { margin: 0; font-size: 0.95rem; color: var(--clr-grey-700); }
+
+    /* How it works */
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .step {
+      position: relative;
+      padding-left: 3.4rem;
+    }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background: var(--clr-accent-500);
+      color: var(--clr-white);
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      box-shadow: var(--shadow-elev-1);
+    }
+
+    /* Benefits */
+    .benefits {
+      display: grid;
+      gap: 1.6rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .benefit { padding: 1rem 0.5rem; }
+    .benefit h3 { font-size: 1.1rem; }
+
+    /* Demo Form */
+    .form-wrapper {
+      background: var(--clr-white);
+      padding: 2rem;
+      border-radius: var(--radius-400);
+      box-shadow: var(--shadow-elev-2);
+      max-width: 520px;
+      margin-inline: auto;
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+    label { font-size: 0.9rem; font-weight: 500; }
+    input, select, textarea {
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--clr-grey-300);
+      border-radius: var(--radius-200);
+      font-size: var(--fs-400);
+      font-family: var(--ff-body);
+    }
+
+    /* FAQ */
+    details { background: var(--clr-white); padding: 1rem 1.25rem; border-radius: var(--radius-200); box-shadow: var(--shadow-elev-1); }
+    details + details { margin-top: 1rem; }
+    summary { font-weight: 600; cursor: pointer; }
+    summary::-webkit-details-marker { display: none; }
+
+    /* Footer */
+    footer {
+      background: var(--clr-grey-900);
+      color: var(--clr-grey-300);
+      padding: 2.5rem 0;
+      font-size: var(--fs-300);
+    }
+    .footer__cols { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .footer__cols a { color: var(--clr-grey-100); font-size: var(--fs-300); }
+    .footer__bottom { margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1rem; text-align: center; }
+
+    /* Responsive Tweaks */
+    @media (max-width: 720px) {
+      .hero { padding: 4rem 0 3rem; }
+      .hero__cta { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ==== CTA-Formular ausrichten ==== */
+    #demo form {
+      display: grid;
+      grid-template-columns: 180px 1fr;   /* Label | Feld */
+      gap: 1rem 1.25rem;
+      align-items: center;
+    }
+
+    /* vorhandene <div> pro Feld „auflösen“ */
+    #demo form > div { display: contents; }
+
+    /* Labels rechtsbündig, Inputs volle Breite */
+    #demo form label { justify-self: end; font-size: 0.9rem; padding-top: .3rem; }
+    #demo form input,
+    #demo form select,
+    #demo form textarea { width: 100%; }
+
+    /* Checkbox-Zeile nur in der rechten Spalte zeigen */
+    #demo form input[type="checkbox"] { width: auto; }
+    #demo form > div:last-of-type { grid-column: 2 / -1; display: flex; gap: .5rem; align-items: center; }
+
+    /* Button über die gesamte Breite */
+    #demo form .btn,
+    #demo form button[type="submit"] { grid-column: 1 / -1; margin-top: 1rem; }
+
+    /* Mobil wieder untereinander stapeln */
+    @media (max-width: 640px) {
+      #demo form { grid-template-columns: 1fr; }
+      #demo form label { justify-self: start; padding-top: 0; }
+      #demo form > div:last-of-type { grid-column: 1 / -1; }
+    }  </style>
+</head>
+<body>
+  <header>
+    <div class="header__inner container">
+      <div class="logo">Kathi – KI-Assistentin für Ihre Ordination</div>
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#loesung">Lösung</a></li>
+          <li><a href="#funktioniert">So funktioniert es</a></li>
+          <li><a href="#demo">Demo</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="top">
+    <div class="container grid" style="align-items:center; grid-template-columns:1fr 1fr;">
+      <div class="hero__content">
+        <h1>Mehr Ruhe am Empfang.<br> Dank KI am Telefon.</h1>
+        <p class="lead" style="font-size:var(--fs-500); max-width:36ch;">Kathi, Ihre virtuelle Assistentin nimmt Anrufe in natürlicher Sprache entgegen, priorisiert Anliegen und bucht Termine – integriert in Ihre bestehende Ordination.</p>
+        <div class="hero__cta">
+          <a class="btn" href="#demo">5‑Minuten‑Demo buchen</a>
+          <a class="btn btn--ghost" href="#features">Funktionsüberblick in 60 Sekunden</a>
+        </div>
+      </div>
+      <div aria-hidden="true" style="justify-self:center; width:100%; max-width:420px;">
+        <!-- Platzhalter für Illustration / Loop-Video -->
+        <div style="aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:var(--clr-grey-500); font-size:0.9rem;"><img src="../profile.png" alt="Kathi - Virtuelle Assistentin"></img></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section id="problem">
+    <div class="container">
+      <h2>Das tägliche Nadelöhr: Erreichbarkeit & Überlastung</h2>
+      <p>Ihr Team ist am Limit, das Telefon ist dauernd besetzt und akute Anliegen gehen in der Warteschleife unter. Die Ursachen sind strukturell – nicht personell.</p>
+      <div class="problems__list">
+        <div class="card">
+          <h3>Dauerbesetzt & Warteschleifen</h3>
+          <p>Routineanfragen blockieren die Leitung, Notfälle warten.</p>
+        </div>
+        <div class="card">
+          <h3>Überlastete Assistentinnen</h3>
+          <p>Ständige Unterbrechungen verhindern konzentriertes Arbeiten vor Ort.</p>
+        </div>
+        <div class="card">
+          <h3>Telefon als Monopolkanal</h3>
+          <p>Andere Kanäle existieren, sind aber nicht vernetzt.</p>
+        </div>
+        <div class="card">
+          <h3>Keine Messbarkeit</h3>
+          <p>Wie viele Anrufe? Welche Anliegen? Bauchgefühl statt Daten.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lösung / UVP -->
+  <section id="loesung">
+    <div class="container">
+      <h2>Kathi – Ihre virtuelle Telefonassistentin</h2>
+      <p>Natürlichsprachliche KI + Omnichannel + Integration in bestehende Systeme. Entlastung ohne Neueinstellungen – und ohne Prozessbruch.</p>
+      <div class="benefits">
+        <div class="benefit">
+          <h3>Ruhe im Empfang</h3>
+          <p>Weniger Klingeln, weniger Unterbrechungen – mehr Fokus auf Patienten vor Ort.</p>
+        </div>
+        <div class="benefit">
+          <h3>Priorisierte Anliegen</h3>
+          <p>Akut vor Routine – automatisch erkannt und zugeordnet.</p>
+        </div>
+        <div class="benefit">
+          <h3>Keine Zusatzkräfte nötig</h3>
+          <p>Das System skaliert Gespräche, nicht Ihr Personalstand.</p>
+        </div>
+        <div class="benefit">
+          <h3>Messbare Qualität</h3>
+          <p>Gesprächsdauer, Abbruchrate, Anliegenmix – transparent im Dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="funktioniert">
+    <div class="container">
+      <h2>So funktioniert es</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>Anruf entgegennehmen</h3>
+          <p>Die KI spricht in natürlicher Sprache, ohne starre Menüs oder Warteschleifen.</p>
+        </div>
+        <div class="step">
+          <h3>Anliegen erkennen & kategorisieren</h3>
+          <p>Regeln für Akuttermine, Kurzkontakte und Standardtermine sind hinterlegt.</p>
+        </div>
+        <div class="step">
+          <h3>Terminieren & Protokollieren</h3>
+          <p>Passende Slots werden vergeben, das Team erhält ein strukturiertes Protokoll.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo CTA -->
+  <section id="demo">
+    <div class="container">
+      <h2>In fünf Minuten sehen, wie es funktioniert</h2>
+      <p>Kurzes Gespräch, klare Einblicke – ohne Verpflichtung.</p>
+      <div class="form-wrapper">
+        <form action="#" method="post" aria-label="Demo anfordern">
+          <div>
+            <label for="name">Name / Praxis*</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div>
+            <label for="email">E-Mail*</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="phone">Telefonnummer</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <div>
+            <label for="slot">Bevorzugtes Zeitfenster</label>
+            <select id="slot" name="slot">
+              <option value="">Bitte wählen…</option>
+              <option>Vormittags (8–12 Uhr)</option>
+              <option>Mittags (12–14 Uhr)</option>
+              <option>Nachmittags (14–17 Uhr)</option>
+            </select>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" name="newsletter"> Ich möchte vorab Informationen per E-Mail erhalten
+            </label>
+          </div>
+          <button type="submit" class="btn">Demo anfordern</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Deep Dive -->
+  <section id="features">
+    <div class="container">
+      <h2>Funktionen im Detail</h2>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem;">
+        <div class="card">
+          <h3>Natürliche Sprache</h3>
+          <p>Kein „Drücken Sie die 1“ – die KI versteht freies Sprechen.</p>
+        </div>
+        <div class="card">
+          <h3>Regelbasierte Priorisierung</h3>
+          <p>Akut, Routine, Info: individuell konfigurierbar.</p>
+        </div>
+        <div class="card">
+          <h3>Omnichannel-Wartenummern</h3>
+          <p>Ordination, Telefon, Web, WhatsApp – ziehen aus dem gemeinsamer Nummern Pool.</p>
+        </div>
+        <div class="card">
+          <h3>Qualitätsmanagement</h3>
+          <p>KI-gestützte Protokolle, Auswertungen und kontinuierliche Optimierung.</p>
+        </div>
+        <div class="card">
+          <h3>Cloud-PBX-Integration</h3>
+          <p>Nahtlose Einbindung in Suhos Cloud PBX und bestehende Systeme.</p>
+        </div>
+        <div class="card">
+          <h3>DSGVO & Sicherheit</h3>
+          <p>Serverstandort EU, rollenbasierte Zugriffe und Verschlüsselung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof / Testimonials -->
+  <section id="stimmen">
+    <div class="container">
+      <h2>Das sagen unsere Anwender</h2>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;">
+        <figure class="card" style="padding:2rem 1.6rem;">
+          <blockquote style="margin:0 0 1rem; font-style:italic; font-size:var(--fs-500);">„Seit Kathi das Telefon übernimmt, haben wir endlich Luft für die Patienten vor Ort.“</blockquote>
+          <figcaption style="font-size:0.9rem; color:var(--clr-grey-700);">Dr. Max Mustermann, Allgemeinmediziner</figcaption>
+        </figure>
+        <figure class="card" style="padding:2rem 1.6rem;">
+          <blockquote style="margin:0 0 1rem; font-style:italic; font-size:var(--fs-500);">„Routineanfragen laufen automatisch – Akutfälle erreichen uns sofort. Genau die Entlastung, die wir brauchten.“</blockquote>
+          <figcaption style="font-size:0.9rem; color:var(--clr-grey-700);">Dr.in Anna Beispiel, Zahnärztin</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2>Häufige Fragen</h2>
+      <details>
+        <summary>Akzeptieren meine Patienten das?</summary>
+        <p>Ja, wenn der Nutzen klar kommuniziert wird. Die KI spricht natürlich und leitet akute Anliegen sofort weiter.</p>
+      </details>
+      <details>
+        <summary>Wie viel Zeit brauche ich zur Einführung?</summary>
+        <p>Unter 60 Minuten für die Grundkonfiguration. Wir begleiten Sie dabei.</p>
+      </details>
+      <details>
+        <summary>Müssen wir Prozesse ändern?</summary>
+        <p>Nein. Ihre bestehenden Abläufe werden abgebildet und schrittweise optimiert – ohne „großen Umbau“.</p>
+      </details>
+      <details>
+        <summary>Was kostet das?</summary>
+        <p>Monatliche Abo-Gebühr, abhängig vom Gesprächsvolumen. Details besprechen wir im Erstgespräch.</p>
+      </details>
+      <details>
+        <summary>Ist das DSGVO-konform?</summary>
+        <p>Ja. Serverstandort EU, verschlüsselte Kommunikation, klare Lösch- und Zugriffskonzepte.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Secondary CTA -->
+  <section id="download">
+    <div class="container" style="text-align:center;">
+      <h2>Checkliste: 7 Schritte zu weniger Telefonstress</h2>
+      <p>Laden Sie unsere kompakte Checkliste herunter – kostenfrei gegen E-Mail-Adresse.</p>
+      <a href="#" class="btn">Checkliste erhalten</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer__cols">
+        <div>
+          <h3 style="font-family:var(--ff-head); font-size:1rem; color:var(--clr-white);">Unternehmen</h3>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Kontakt</a></li>
+            <li><a href="#">Karriere</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-family:var(--ff-head); font-size:1rem; color:var(--clr-white);">Rechtliches</h3>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="#">Impressum</a></li>
+            <li><a href="#">Datenschutz</a></li>
+            <li><a href="#">AGB</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-family:var(--ff-head); font-size:1rem; color:var(--clr-white);">Folgen Sie uns</h3>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; gap:0.6rem;">
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">© <span id="year"></span> Kathi – Ihre virtuelle Assistentin. Alle Rechte vorbehalten.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Aktuelles Jahr im Footer setzen
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
